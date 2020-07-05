@@ -5,18 +5,28 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorDirectorio;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Usuario
+ * @author Lisseth Reinoso
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrincipal
      */
+    
+    public ControladorDirectorio controladorDirectorio;
+    
+    
     public VentanaPrincipal() {
         initComponents();
+        controladorDirectorio=new ControladorDirectorio();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +62,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnListarDirectorio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnListarDirectorio.setText("Listar Directorios");
+        btnListarDirectorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarDirectorioActionPerformed(evt);
+            }
+        });
 
         btnArchivosOcultos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnArchivosOcultos.setText("Listar Archivos ocultos");
@@ -171,6 +186,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void salirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_salirMenuItemActionPerformed
+
+    private void btnListarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDirectorioActionPerformed
+        // TODO add your handling code here:
+        
+        String ruta = txtRuta.getText();
+        
+        if(ruta==null){
+            
+            JOptionPane.showMessageDialog(this,"La ruta está vacía, por favor llenela");
+        }else{
+            JOptionPane.showMessageDialog(this,"Procesando");
+        }
+    }//GEN-LAST:event_btnListarDirectorioActionPerformed
 
     /**
      * @param args the command line arguments

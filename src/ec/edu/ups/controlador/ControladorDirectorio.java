@@ -5,8 +5,9 @@
  */
 package ec.edu.ups.controlador;
 
-import java.io.File;
-import java.util.List;
+import java.io.*;
+import java.util.*;
+
 
 /**
  *
@@ -17,6 +18,9 @@ public class ControladorDirectorio {
     private String ruta;
     private File archivo;
     private File archivos[];
+
+    public ControladorDirectorio() {
+    }
     
     
     
@@ -25,33 +29,84 @@ public class ControladorDirectorio {
         ruta=this.ruta;
     }
     
+    
     public List<String> listarArchivos(){
-        return null;
+        
+        List <String> archivosL= new ArrayList<>();
+        archivo=new File(ruta);
+        archivos= archivo.listFiles();
+       
+        for (File componente : archivos) {
+            if (!componente.isHidden()) {
+                archivosL.add(componente.getName());
+            }
+        }
+        return archivosL;
     }
+    
     
     
     public List<String> listarDirectorios(){
-        return null;
+        List <String> Directorios= new ArrayList<>();
+        archivo=new File(ruta);
+        archivos=archivo.listFiles();
+        
+        return Directorios;
     }
     
     public List <String> listarArchivosOcultos(){
+         List<String> archivosOcultos = new ArrayList<>();
+         for (File componente : archivos) {
+            if (componente.isHidden()) {
+                archivosOcultos.add(componente.getName());
+            }
+        }
+        return archivosOcultos;
+    }
+    
+    public List <String> listarDirectoriosOcultos(){
+        List<String> directoriosOcultos = new ArrayList<>();
+        
         return null;
     }
     
     
-    public void crearDirectorio(String nombre){
+    public void crearDirectorio(String nombre) throws IOException{
+        
+        archivo =new File(nombre);
+        
+        try{
+         if(archivo.exists()==false){
+          archivo.createNewFile();
+         }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();  
+        }
+        
+        
+        
         
     }
     
     public void eliminarDirectorio(String nombre){
         
+        
+        
     }
     
-    public void  renombrarDIrectorio(String actual, String nuevo){
+    public void  renombrarDirectorio(String actual, String nuevo){
+        
+        
         
     }
     
     public String mostrarInformacion(String nombre){
+        
+        
+        
+        
+        
         return null;
     }
     
