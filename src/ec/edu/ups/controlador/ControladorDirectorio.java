@@ -38,7 +38,9 @@ public class ControladorDirectorio {
        
         for (File componente : archivos) {
             if (!componente.isHidden() && !archivo.isDirectory()) {
-                archivosL.add(componente.getName());   
+                archivosL.add(componente.getName()); 
+                
+               
             }
         }
         return archivosL;
@@ -46,7 +48,7 @@ public class ControladorDirectorio {
     //LISTO
     public List<String> listarDirectorios(){
         List <String> Directorios= new ArrayList<>();
-       
+       List <String> subDirectorios= new ArrayList<>();
         archivo=new File(ruta);
         archivos=archivo.listFiles();
         for (File componente : archivos) {
