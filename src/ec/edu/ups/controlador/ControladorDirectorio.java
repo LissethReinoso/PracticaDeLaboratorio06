@@ -26,7 +26,7 @@ public class ControladorDirectorio {
     }
 
     //LISTO
-    public List<String> listarArchivos() {
+    public List<String> listarArchivos(String nombre) {
 
         List<String> archivosL = new ArrayList<>();
         archivo = new File(ruta);
@@ -46,7 +46,7 @@ public class ControladorDirectorio {
     }
 
     //LISTO
-    public List<String> listarDirectorios() {
+    public List<String> listarDirectorios(String ruta) {
         List<String> Directorios = new ArrayList<>();
        // List<String> subDirec = new ArrayList<>();
         archivo = new File(ruta);
@@ -80,7 +80,7 @@ public class ControladorDirectorio {
     }
 
     //LISTO
-    public List<String> listarDirectoriosOcultos() {
+    public List<String> listarDirectoriosOcultos(String ruta) {
         List<String> directoriosOcultos = new ArrayList<>();
         archivo = new File(ruta);
         archivos = archivo.listFiles();
@@ -139,12 +139,10 @@ public class ControladorDirectorio {
         String informacion = " ";
 
         for (File componente : archivos) {
-
             //path 
             String path = " ";
             path = componente.getAbsolutePath();
             informacion = informacion.concat("\n" + path);
-
             //tamaño
             long tamanio = 0;
             String t = " ";
@@ -152,7 +150,6 @@ public class ControladorDirectorio {
             String tam = String.valueOf(tamanio);
             t = t.concat(tam + " KB");
             informacion = informacion.concat("\n" + t);
-
             //Leer
             String leer = " ";
             if (componente.canRead()) {
@@ -161,7 +158,6 @@ public class ControladorDirectorio {
                 leer = leer.concat(" Cerrado");
             }
             informacion = informacion.concat("\n" + leer);
-
             //Escribir
             String escribir = " ";
             if (componente.canWrite()) {
@@ -170,7 +166,6 @@ public class ControladorDirectorio {
                 escribir = escribir.concat(" Cerrado");
             }
             informacion = informacion.concat("\n" + escribir);
-
             //fecha
             long fecha = componente.lastModified();
             String f = " ";
