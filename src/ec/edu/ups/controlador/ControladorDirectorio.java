@@ -130,26 +130,55 @@ public class ControladorDirectorio {
         archivo =new File(ruta);
         archivos=archivo.listFiles();
         
-        
+        String informacion = " ";
         
         
         for(File componente: archivos){
+            
+
             //path 
             String path=" ";
             path= componente.getAbsolutePath();
+            informacion=informacion.concat("\n"+path);
             
             //tamaño
-            double tamanio=0;
+            long tamanio=0;
             String t=" ";
             tamanio=componente.length();
             String tam= String.valueOf(tamanio);
              t=t.concat(tam+" KB");
+            informacion=informacion.concat("\n"+t);
             
+            //Leer
+            String leer=" ";
+            if(componente.canRead()){
+                leer=leer.concat(" Abierto");
+            }else{
+                leer=leer.concat(" Cerrado");
+            }
+            informacion=informacion.concat("\n"+leer);
+            
+           //Escribir
+           String escribir=" ";
+           if(componente.canWrite()){
+                escribir=escribir.concat(" Abierto");
+            }else{
+                escribir=escribir.concat(" Cerrado");
+            }
+            informacion=informacion.concat("\n"+escribir);
+           
+            //fecha
+            
+            long fecha= componente.lastModified();
+            String f=" ";
+            Date fe=new Date(fecha);
+            f=f.concat(" "+fe);
+             informacion=informacion.concat("\n"+f);
         }
         
+       
         
-        
-        return null;
+        return informacion;
     }
     
     
