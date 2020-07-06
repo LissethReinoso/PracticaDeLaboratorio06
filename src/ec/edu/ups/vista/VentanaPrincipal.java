@@ -189,15 +189,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnListarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDirectorioActionPerformed
         // TODO add your handling code here:
-        
         String ruta = txtRuta.getText();
-        
         if(ruta==null){
-            
             JOptionPane.showMessageDialog(this,"La ruta está vacía, por favor llenela");
         }else{
             JOptionPane.showMessageDialog(this,"Procesando");
         }
+        txtRuta.setText(" ");
+        
     }//GEN-LAST:event_btnListarDirectorioActionPerformed
 
     /**

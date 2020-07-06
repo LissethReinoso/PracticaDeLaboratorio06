@@ -17,7 +17,7 @@ public class ControladorDirectorio {
     
     private String ruta;
     private File archivo;
-    private File archivos[];
+    private File[] archivos;
 
     public ControladorDirectorio() {
     }
@@ -29,48 +29,62 @@ public class ControladorDirectorio {
         ruta=this.ruta;
     }
     
-    
-    public List<String> listarArchivos(){
+    //LISTO
+    public List<String> listarArchivos(String ruta){
         
         List <String> archivosL= new ArrayList<>();
         archivo=new File(ruta);
         archivos= archivo.listFiles();
        
         for (File componente : archivos) {
-            if (!componente.isHidden()) {
-                archivosL.add(componente.getName());
+            if (!componente.isHidden() && !archivo.isDirectory()) {
+                archivosL.add(componente.getName());   
             }
         }
         return archivosL;
     }
-    
-    
-    
+    //LISTO
     public List<String> listarDirectorios(){
         List <String> Directorios= new ArrayList<>();
+       
         archivo=new File(ruta);
         archivos=archivo.listFiles();
-        
+        for (File componente : archivos) {
+            if (!componente.isHidden() && archivo.isDirectory()) {
+                Directorios.add(componente.getName());   
+            }
+        }
         return Directorios;
     }
     
-    public List <String> listarArchivosOcultos(){
+    //LISTO
+    public List <String> listarArchivosOcultos(String nombre){
          List<String> archivosOcultos = new ArrayList<>();
+         archivo = new File(nombre);
+         archivos = archivo.listFiles();
+         
          for (File componente : archivos) {
-            if (componente.isHidden()) {
+            if (componente.isHidden() && !archivo.isDirectory()) {
                 archivosOcultos.add(componente.getName());
             }
         }
         return archivosOcultos;
     }
     
-    public List <String> listarDirectoriosOcultos(){
+    //LISTO
+    public List <String> listarDirectoriosOcultos(String ruta){
         List<String> directoriosOcultos = new ArrayList<>();
-        
-        return null;
+           archivo = new File(ruta);
+          archivos = archivo.listFiles();
+          for (File componente : archivos) {
+            if (componente.isHidden() && archivo.isDirectory()) {
+                directoriosOcultos.add(componente.getName());
+            }
+        }
+        return directoriosOcultos;
     }
     
-    
+    //LISTO
     public void crearDirectorio(String nombre) throws IOException{
         
         archivo =new File(nombre);
@@ -80,30 +94,58 @@ public class ControladorDirectorio {
           archivo.createNewFile();
          }
         }
+        catch(IOException ex){
+            ex.printStackTrace();  
+        }
+        
+    }
+    
+    
+    //LISTO
+    public void eliminarDirectorio(String nombre){
+         archivo =new File(nombre);
+        try{
+         if(archivo.exists()==true){
+          archivo.delete();
+         }
+        }
         catch(Exception ex){
             ex.printStackTrace();  
         }
         
-        
-        
-        
     }
     
-    public void eliminarDirectorio(String nombre){
-        
-        
-        
-    }
     
+    //LISTO
     public void  renombrarDirectorio(String actual, String nuevo){
         
-        
-        
+       archivo=new File(actual);
+      
+       File nuevoArchivo=new File(nuevo);
+        archivo.renameTo(nuevoArchivo);
     }
     
     public String mostrarInformacion(String nombre){
         
+        archivo =new File(ruta);
+        archivos=archivo.listFiles();
         
+        
+        
+        
+        for(File componente: archivos){
+            //path 
+            String path=" ";
+            path= componente.getAbsolutePath();
+            
+            //tamaño
+            double tamanio=0;
+            String t=" ";
+            tamanio=componente.length();
+            String tam= String.valueOf(tamanio);
+             t=t.concat(tam+" KB");
+            
+        }
         
         
         
